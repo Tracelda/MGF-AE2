@@ -13,6 +13,8 @@ public class BalloonScrpt : MonoBehaviour
     public bool GameWon;
     public bool DisableInput;
     public CountDownScrpt CountDownScrpt;
+    public GameManager GameManager;
+    public StaticScrpt StaticScrpt;
 
     void Start()
     {
@@ -105,12 +107,21 @@ public class BalloonScrpt : MonoBehaviour
         if (CountDownScrpt.TimeUp == true && GameWon == false)
         {
             Debug.Log("GameLost");
+            StaticScrpt.Lives--;
+            if (StaticScrpt.Lives != 0)
+            {
+                GameManager.LoadNextGame();
+            }
+            else
+            {
+                GameManager.LoadGameOver();
+            }
             SceneManager.LoadScene(1);
         }
         else if (CountDownScrpt.TimeUp == true && GameWon == true)
         {
             Debug.Log("Game Won");
-            SceneManager.LoadScene(0);
+            GameManager.LoadNextGame();
         }
     }
     public void StartTimer()
