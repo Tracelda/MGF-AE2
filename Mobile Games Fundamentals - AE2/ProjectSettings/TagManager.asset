@@ -9,6 +9,7 @@ TagManager:
   - MoleA
   - MoleB
   - MoleC
+  - Movable
   layers:
   - Default
   - TransparentFX
