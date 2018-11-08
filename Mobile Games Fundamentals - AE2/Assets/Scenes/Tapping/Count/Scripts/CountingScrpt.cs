@@ -15,8 +15,9 @@ public class CountingScrpt : MonoBehaviour {
     public bool GameWon;
     public bool DisableInput;
     public CountDownScrpt CountDownScrpt;
+    public GameManager GameManager;
 
-	void Start ()
+    void Start()
     {
         Counter = GameObject.Find("Counter");
         CounterColl = Counter.GetComponent<BoxCollider2D>();
@@ -24,47 +25,47 @@ public class CountingScrpt : MonoBehaviour {
         CountText = CounterText.GetComponent<Text>();
         CountTarget = 5;
         DisableInput = false;
-	}
+    }
 
 
     void Update()
     {
 #if UNITY_EDITOR
 
-            StartTimer();
-            if (Input.GetMouseButtonDown(0))
-            {
-                Debug.Log("Click");
-                Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-                RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
+        StartTimer();
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Click");
+            Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+            RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
 
-                if (hit && hit.collider.CompareTag("Counter") == true && Count < 10)
-                {
-                    Debug.Log("Counter Hit");
-                    Debug.Log("Less Than 10");
-                    Count++;
-                    CountStrng = Count.ToString();
-                    CountText.text = "0" + CountStrng;
-                }
-                else if (hit && hit.collider.CompareTag("Counter") == true && Count >= 10)
-                {
-                    Debug.Log("Counter Hit");
-                    Debug.Log("More Than 10");
-                    Count++;
-                    CountStrng = Count.ToString();
-                }
+            if (hit && hit.collider.CompareTag("Counter") == true && Count < 10)
+            {
+                Debug.Log("Counter Hit");
+                Debug.Log("Less Than 10");
+                Count++;
+                CountStrng = Count.ToString();
+                CountText.text = "0" + CountStrng;
             }
+            else if (hit && hit.collider.CompareTag("Counter") == true && Count >= 10)
+            {
+                Debug.Log("Counter Hit");
+                Debug.Log("More Than 10");
+                Count++;
+                CountStrng = Count.ToString();
+            }
+        }
 
-            if (Count == CountTarget)
-            {
-                GameWon = true;
-                Debug.Log("Game Won");
-            }
-            else if (Count > CountTarget)
-            {
-                GameWon = false;
-                Debug.Log("Game Lost");
-            }
+        if (Count == CountTarget)
+        {
+            GameWon = true;
+            Debug.Log("Game Won");
+        }
+        else if (Count > CountTarget)
+        {
+            GameWon = false;
+            Debug.Log("Game Lost");
+        }
         EndCheck();
 
 #elif UNITY_ANDROID
@@ -119,12 +120,21 @@ public class CountingScrpt : MonoBehaviour {
         if (CountDownScrpt.TimeUp == true && GameWon == false)
         {
             Debug.Log("GameLost");
+            StaticScrpt.Lives--;
+            if (StaticScrpt.Lives != 0)
+            {
+                GameManager.LoadNextGame();
+            }
+            else
+            {
+                GameManager.LoadGameOver();
+            }
             SceneManager.LoadScene(1);
         }
         else if (CountDownScrpt.TimeUp == true && GameWon == true)
         {
             Debug.Log("Game Won");
-            SceneManager.LoadScene(0);
+            GameManager.LoadNextGame();
         }
     }
 }
