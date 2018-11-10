@@ -565,8 +565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f236f550a312d9f4fa5ce406cbfe4b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CountDown: {fileID: 0}
-  CountDownSlider: {fileID: 0}
+  CountDown: {fileID: 1206412887}
+  CountDownSlider: {fileID: 1206412890}
   StartTimer: 0
   TimeUp: 0
   TimerValue: 0
@@ -813,7 +813,7 @@ GameObject:
   - component: {fileID: 1839520569}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -830,7 +830,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHight: 500
-  Rigid: {fileID: 0}
+  Rigid: {fileID: 1839520571}
+  CountDownScrpt: {fileID: 1206412889}
+  GameManager: {fileID: 2114969997}
+  GameWon: 0
 --- !u!61 &1839520570
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -985,8 +988,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d46719451d41124b97cd8e7ec8796ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: -100
-  ObsticalRigid: {fileID: 0}
+  MoveSpeed: -150
+  Obstical: {fileID: 1852532080}
+  ObsticalRigid: {fileID: 1852532081}
+  JumpScrpt: {fileID: 1839520569}
+  CountDownScrpt: {fileID: 1206412889}
 --- !u!212 &1852532083
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1156,3 +1162,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2114969997 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114368505084969620, guid: ae16118c3b8f3344e941a45edac22494,
+    type: 2}
+  m_PrefabInternal: {fileID: 1512369497}
+  m_Script: {fileID: 11500000, guid: 8a7f710c05403254a9c756faf548eebf, type: 3}
