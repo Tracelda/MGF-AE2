@@ -826,14 +826,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1839520568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fbce561afe9b484eb7f7eef3f7f7efb, type: 3}
+  m_Script: {fileID: 11500000, guid: 90741ae3886421848bf03876bc0a7615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHight: 500
-  Rigid: {fileID: 1839520571}
   CountDownScrpt: {fileID: 1206412889}
   GameManager: {fileID: 2114969997}
+  SwipeInputScrpt: {fileID: 2041063233}
+  Player: {fileID: 1839520568}
+  PlayerRigid: {fileID: 1839520571}
   GameWon: 0
+  JumpHight: 500
 --- !u!61 &1839520570
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -991,7 +993,7 @@ MonoBehaviour:
   MoveSpeed: -150
   Obstical: {fileID: 1852532080}
   ObsticalRigid: {fileID: 1852532081}
-  JumpScrpt: {fileID: 1839520569}
+  NewJumpScrpt: {fileID: 0}
   CountDownScrpt: {fileID: 1206412889}
 --- !u!212 &1852532083
 SpriteRenderer:
@@ -1088,6 +1090,7 @@ GameObject:
   - component: {fileID: 2041063231}
   - component: {fileID: 2041063230}
   - component: {fileID: 2041063229}
+  - component: {fileID: 2041063233}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1162,6 +1165,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2041063233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2041063228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34289bf7cf8116e4c96382e106ce1ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SwipePercentage: 10
+  VerticalLock: 0
+  HorizontalLock: 0
+  Swipe: 0
+  UpSwipe: 0
+  DownSwipe: 0
+  LeftSwipe: 0
+  RightSwipe: 0
 --- !u!114 &2114969997 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114368505084969620, guid: ae16118c3b8f3344e941a45edac22494,
