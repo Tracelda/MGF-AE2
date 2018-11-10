@@ -10,6 +10,7 @@ TagManager:
   - MoleB
   - MoleC
   - Movable
+  - Destroy
   layers:
   - Default
   - TransparentFX

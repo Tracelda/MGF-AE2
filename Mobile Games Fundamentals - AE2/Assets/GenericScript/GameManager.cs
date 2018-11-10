@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour {
     public void LoadFirstGame()
     {
         SceneNum = (Navigation)2; // loads first game pop
-        StaticScrpt.currentGame = 2;
+        StaticScrpt.currentGame = 2; // pop is scene number 2
         ChangeScene();
 
     }
@@ -112,7 +112,9 @@ public class GameManager : MonoBehaviour {
     public void LoadNextGame()
     {
         SceneNum = (Navigation)1; // loads loading scene
+        Debug.Log("Before ++:" + StaticScrpt.currentGame);
         StaticScrpt.currentGame++;
+        Debug.Log("After ++:" + StaticScrpt.currentGame);
         ChangeScene();
     }
 

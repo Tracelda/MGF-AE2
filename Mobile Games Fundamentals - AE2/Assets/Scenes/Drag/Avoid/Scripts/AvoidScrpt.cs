@@ -7,12 +7,18 @@ public class AvoidScrpt : MonoBehaviour {
 
     private Vector3 mouselocation;
     public GameObject Movable;
+    public GameObject FallingPrefab;
     public Rigidbody2D Rigid;
     public bool Moving;
     public bool Pickedup;
     public bool GameLost;
+    public bool Spawned;
     public CountDownScrpt CountDownScrpt;
     public GameManager GameManager;
+    public float FallPos;
+    public float ScreenLeft;
+    public float ScreenRight;
+    public float FallHight;
     
 
     void Start ()
@@ -22,7 +28,12 @@ public class AvoidScrpt : MonoBehaviour {
         Rigid = Movable.GetComponent<Rigidbody2D>();
         Moving = false;
         Pickedup = false;
-	}
+        ScreenLeft = -2.30f;
+        ScreenRight = 2.3f;
+        FallHight = 5f;
+        StartTimer();
+        InstantiateFallingObject();
+    }
 	
 
 	void Update ()
@@ -41,6 +52,7 @@ public class AvoidScrpt : MonoBehaviour {
             PutDown();
             Rigid.velocity = Vector2.zero;
         }
+        EndCheck();
 
     }
 
@@ -92,7 +104,7 @@ public class AvoidScrpt : MonoBehaviour {
             {
                 GameManager.LoadGameOver();
             }
-            SceneManager.LoadScene(1);
+            
         }
         else if (CountDownScrpt.TimeUp == true && GameLost == false)
         {
@@ -105,5 +117,15 @@ public class AvoidScrpt : MonoBehaviour {
     {
         GameLost = true;
         Debug.Log("Collission");
+    }
+
+    private void InstantiateFallingObject()
+    {
+        if (Spawned == false)
+        {
+            FallPos = Random.Range(ScreenLeft, ScreenRight);
+            Instantiate(FallingPrefab, new Vector2(FallPos, FallHight), Quaternion.identity);
+            Spawned = true;
+        }
     }
 }
