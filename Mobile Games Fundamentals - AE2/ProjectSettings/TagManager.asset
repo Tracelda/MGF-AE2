@@ -11,6 +11,7 @@ TagManager:
   - MoleC
   - Movable
   - Destroy
+  - Floor
   layers:
   - Default
   - TransparentFX

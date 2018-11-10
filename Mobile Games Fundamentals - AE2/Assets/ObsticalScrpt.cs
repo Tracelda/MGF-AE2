@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObsticalScrpt : MonoBehaviour {
+    public float MoveSpeed;
+    public Rigidbody2D ObsticalRigid;
 
-	// Use this for initialization
-	void Start () {
-		
+    void Start ()
+    {
+        ObsticalRigid = GetComponent<Rigidbody2D>();	
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        ObsticalRigid.velocity = new Vector2(MoveSpeed * Time.deltaTime, ObsticalRigid.velocity.y);	
 	}
 }
