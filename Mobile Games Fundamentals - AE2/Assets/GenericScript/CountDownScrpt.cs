@@ -15,17 +15,17 @@ public class CountDownScrpt : MonoBehaviour {
     {
         CountDown = GameObject.Find("Slider");
         CountDownSlider = CountDown.GetComponent<Slider>();
-        StartTimer = false;
         TimeUp = false;
 	}
 	
 
 	void Update ()
     {
-		if (StartTimer == true && TimerValue < TimerTarget)
+		if ((StartTimer == true) && (TimerValue < TimerTarget))
         {
             TimerValue += Time.deltaTime;
             CountDownSlider.value = TimerValue;
+            // Debug.Log("TimerRunning");
 
             if (TimerValue >= TimerTarget)
             {
