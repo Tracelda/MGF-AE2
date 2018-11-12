@@ -15,15 +15,14 @@ public class NewJumpScrpt : MonoBehaviour {
 
     void Start ()
     {
-
+        StartTimer();
     }
 	
 
 	void Update ()
     {
-        StartTimer();
         SwipeInputScrpt.DetectSwipe();
-        if (Input.GetMouseButtonDown(0) || SwipeInputScrpt.UpSwipe == true)
+        if (SwipeInputScrpt.UpSwipe == true)
         {
             Jump();
         }
