@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WateringScrpt : MonoBehaviour {
     public Vector3 Rotation;
@@ -9,15 +10,20 @@ public class WateringScrpt : MonoBehaviour {
     public GameObject Wateringcan;
     public Rigidbody2D Rigid;
     public bool InputLock;
-    
+    public bool GameWon;
+    public CountDownScrpt CountDownScrpt;
+    public GameManager GameManager;
+
+    private float Rot;
+    public float Range = 10.0f;
+
 
 	void Start ()
     {
         Wateringcan = GameObject.Find("WateringCan");
         Rigid = Wateringcan.GetComponent<Rigidbody2D>();
-        LeftLock = 100f;
-        RightLock = -30f;
         InputLock = false;
+        StartTimer();
     }
 
     void Update()
@@ -31,6 +37,7 @@ public class WateringScrpt : MonoBehaviour {
         {
             Debug.Log("Input Locked");
         }
+        EndCheck();
     }
 
     public void Rotate()
@@ -41,33 +48,54 @@ public class WateringScrpt : MonoBehaviour {
 
     public void CheckRotation()
     {
-        //if (gameObject.transform.rotation.z < RightLock)
-        //{
-        //    gameObject.transform.rotation = Quaternion.Euler(Rotation.x, Rotation.y, RightLock);
-
-        //    Rigid.freezeRotation = true;
-        //    Debug.Log("Freeze Right");
-        //}
-
-        if (gameObject.transform.rotation.eulerAngles.z <= LeftLock)
+        Rot = gameObject.transform.rotation.eulerAngles.z;
+        if ((Rot < RightLock) && (Rot > LeftLock))
         {
             InputLock = true;
-            //gameObject.transform.rotation = Quaternion.Euler(Rotation.x, Rotation.y, LeftLock);
-
-            //Rigid.freezeRotation = true;
-            Debug.Log("Freeze Left");
-        }
-        else if (gameObject.transform.rotation.eulerAngles.z >= RightLock)
-        {
-            InputLock = true;
-            Debug.Log("Freeze Right");
+            Pouring();
         }
     }
 
-    //if (gameObject.transform.rotation.z == LeftLock)
-    //{
-    //    Debug.Log("Pouring");
-    //}
+    public void Pouring()
+    {
 
+        if (Rot > LeftLock)
+        {
+            GameWon = false;
+            Debug.Log("Game Lost");
+        }
+        else if (Rot < RightLock)
+        {
+            GameWon = true;
+            Debug.Log("Game Won");
+        }
+    }
 
+    public void StartTimer()
+    {
+        CountDownScrpt.StartT();
+    }
+
+    public void EndCheck()
+    {
+        if (CountDownScrpt.TimeUp == true && GameWon == false)
+        {
+            Debug.Log("GameLost");
+            StaticScrpt.Lives--;
+            if (StaticScrpt.Lives != 0)
+            {
+                GameManager.LoadNextGame();
+            }
+            else
+            {
+                GameManager.LoadGameOver();
+            }
+            SceneManager.LoadScene(1);
+        }
+        else if (CountDownScrpt.TimeUp == true && GameWon == true)
+        {
+            Debug.Log("Game Won");
+            GameManager.LoadNextGame();
+        }
+    }
 }
