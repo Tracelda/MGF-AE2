@@ -567,6 +567,7 @@ MonoBehaviour:
   GameWon: 0
   Rigid: {fileID: 1524057463}
   Inputlock: 0
+  speed: 200
 --- !u!50 &1524057463
 Rigidbody2D:
   serializedVersion: 4

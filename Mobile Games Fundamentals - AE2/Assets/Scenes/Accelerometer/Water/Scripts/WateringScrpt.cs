@@ -15,7 +15,7 @@ public class WateringScrpt : MonoBehaviour {
     {
         Wateringcan = GameObject.Find("WateringCan");
         Rigid = Wateringcan.GetComponent<Rigidbody2D>();
-        LeftLock = 10f;
+        LeftLock = 100f;
         RightLock = -30f;
         InputLock = false;
     }
@@ -26,6 +26,10 @@ public class WateringScrpt : MonoBehaviour {
         {
             Rotate();
             CheckRotation();
+        }
+        else
+        {
+            Debug.Log("Input Locked");
         }
     }
 
@@ -45,13 +49,18 @@ public class WateringScrpt : MonoBehaviour {
         //    Debug.Log("Freeze Right");
         //}
 
-        if (gameObject.transform.rotation.z >= LeftLock)
+        if (gameObject.transform.rotation.eulerAngles.z <= LeftLock)
         {
             InputLock = true;
             //gameObject.transform.rotation = Quaternion.Euler(Rotation.x, Rotation.y, LeftLock);
 
             //Rigid.freezeRotation = true;
             Debug.Log("Freeze Left");
+        }
+        else if (gameObject.transform.rotation.eulerAngles.z >= RightLock)
+        {
+            InputLock = true;
+            Debug.Log("Freeze Right");
         }
     }
 

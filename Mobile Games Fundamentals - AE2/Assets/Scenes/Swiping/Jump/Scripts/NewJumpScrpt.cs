@@ -10,19 +10,22 @@ public class NewJumpScrpt : MonoBehaviour {
     public GameObject Player;
     public Rigidbody2D PlayerRigid;
     public bool GameWon;
+    public bool JumpResult;
     public int JumpHight;
 
 
     void Start ()
     {
-        StartTimer();
+        //StartTimer();
     }
 	
 
 	void Update ()
     {
         SwipeInputScrpt.DetectSwipe();
-        if (SwipeInputScrpt.UpSwipe == true)
+        JumpResult = SwipeInputScrpt.DetectSwipe();
+        Debug.Log(JumpResult);
+        if (JumpResult == true)
         {
             Jump();
         }

@@ -20,12 +20,12 @@ public class SwipeInputScrpt : MonoBehaviour {
         ResetInput();
     }
 
-    public void DetectSwipe()
+    public bool DetectSwipe()
     {
-        if( Input.touchCount == 1)
+        if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
-            if(touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Began)
             {
                 FirstTouchPos = touch.position;
                 LastTouchPos = touch.position;
@@ -47,12 +47,18 @@ public class SwipeInputScrpt : MonoBehaviour {
                             Debug.Log("Left");
                             Swipe = true;
                             LeftSwipe = true;
+                            RightSwipe = false;
+                            UpSwipe = false;
+                            DownSwipe = false;
                         }
                         else
                         {
                             Debug.Log("Right");
                             Swipe = true;
+                            LeftSwipe = false;
                             RightSwipe = true;
+                            UpSwipe = false;
+                            DownSwipe = false;
                         }
                     }
                     else { Debug.Log("Horizontal Lock Active"); }
@@ -65,21 +71,35 @@ public class SwipeInputScrpt : MonoBehaviour {
                         {
                             Debug.Log("Up");
                             Swipe = true;
+                            LeftSwipe = false;
+                            RightSwipe = false;
                             UpSwipe = true;
+                            DownSwipe = false;
                         }
                         else
                         {
                             Debug.Log("Down");
                             Swipe = true;
+                            LeftSwipe = false;
+                            RightSwipe = false;
+                            UpSwipe = false;
                             DownSwipe = true;
                         }
                     }
                     else
-                    { Debug.Log("Vertical Lock Active"); }
-                } 
+                    {
+                        Debug.Log("Vertical Lock Active");
+                        Swipe = false;
+
+                    }
+                }
             }
         }
-        ResetInput();
+        else
+        {
+            Swipe = false;
+        } 
+        return Swipe;
     }
 
     public void ResetInput()
