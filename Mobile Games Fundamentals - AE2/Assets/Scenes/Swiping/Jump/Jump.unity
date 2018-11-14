@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 634184791}
   - component: {fileID: 634184790}
   - component: {fileID: 634184792}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -807,7 +807,7 @@ GameObject:
   - component: {fileID: 1839520571}
   - component: {fileID: 1839520570}
   - component: {fileID: 1839520569}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -826,13 +826,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CountDownScrpt: {fileID: 1206412889}
-  GameManager: {fileID: 0}
+  GameManager: {fileID: 1869510555}
   SwipeInputScrpt: {fileID: 2041063233}
   Player: {fileID: 1839520568}
   PlayerRigid: {fileID: 1839520571}
   GameWon: 0
   JumpResult: 0
   JumpHight: 500
+  RayLength: -1
 --- !u!61 &1839520570
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -930,7 +931,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1839520568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.92, y: -3.74, z: 0}
+  m_LocalPosition: {x: -2, y: -3.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -989,7 +990,7 @@ MonoBehaviour:
   MoveSpeed: -150
   Obstical: {fileID: 1852532080}
   ObsticalRigid: {fileID: 1852532081}
-  NewJumpScrpt: {fileID: 0}
+  NewJumpScrpt: {fileID: 1839520569}
   CountDownScrpt: {fileID: 1206412889}
 --- !u!212 &1852532083
 SpriteRenderer:
@@ -1074,6 +1075,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1869510555 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114368505084969620, guid: ae16118c3b8f3344e941a45edac22494,
+    type: 2}
+  m_PrefabInternal: {fileID: 1359901130}
+  m_Script: {fileID: 11500000, guid: 8a7f710c05403254a9c756faf548eebf, type: 3}
 --- !u!1 &2041063228
 GameObject:
   m_ObjectHideFlags: 0

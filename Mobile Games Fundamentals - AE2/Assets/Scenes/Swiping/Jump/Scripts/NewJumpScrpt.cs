@@ -12,11 +12,13 @@ public class NewJumpScrpt : MonoBehaviour {
     public bool GameWon;
     public bool JumpResult;
     public int JumpHight;
+    public float RayLength;
 
 
     void Start ()
     {
-        //StartTimer();
+        GameWon = true;
+        StartTimer();
     }
 	
 
@@ -29,7 +31,7 @@ public class NewJumpScrpt : MonoBehaviour {
         {
             Jump();
         }
-
+        Debug.DrawLine(transform.position, transform.position + new Vector3(0, RayLength, 0), Color.red, 10f);
         EndCheck();
 	}
 
@@ -63,7 +65,9 @@ public class NewJumpScrpt : MonoBehaviour {
 
     public void Jump()
     {
-        PlayerRigid.velocity = new Vector2(PlayerRigid.velocity.y, JumpHight * Time.deltaTime);
+        if (Physics2D.Linecast(transform.position, transform.position + new Vector3(0, RayLength, 0), 1 << LayerMask.NameToLayer("Floor")))
+        {
+            PlayerRigid.velocity = new Vector2(PlayerRigid.velocity.y, JumpHight * Time.deltaTime);
+        }
     }
-
 }

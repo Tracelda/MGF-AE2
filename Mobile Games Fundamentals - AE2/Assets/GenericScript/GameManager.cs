@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour {
     {
         SceneNum = (Navigation)2; // loads first game pop
         StaticScrpt.currentGame = 2; // pop is scene number 2
+        StaticScrpt.lives = 3;
         ChangeScene();
 
     }
