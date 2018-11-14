@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class WateringScrpt : MonoBehaviour {
     public Vector3 Rotation;
-    public float LeftLock;
-    public float RightLock;
+    public float LowLim;
+    public float HighLim;
+    public float LowLossLim;
+    public float HighLossLim;
     public GameObject Wateringcan;
     public Rigidbody2D Rigid;
     public bool InputLock;
@@ -48,27 +50,26 @@ public class WateringScrpt : MonoBehaviour {
 
     public void CheckRotation()
     {
+        Debug.Log(Rot);
         Rot = gameObject.transform.rotation.eulerAngles.z;
-        if ((Rot < RightLock) && (Rot > LeftLock))
-        {
-            InputLock = true;
-            Pouring();
-        }
+        Pouring();
+        
+
     }
 
     public void Pouring()
     {
-
-        if (Rot > LeftLock)
+        if ((Rot <= HighLim) && (Rot >= LowLim))
         {
-            GameWon = false;
-            Debug.Log("Game Lost");
-        }
-        else if (Rot < RightLock)
-        {
+            InputLock = true;
             GameWon = true;
-            Debug.Log("Game Won");
         }
+        else if ((Rot <= HighLossLim) && (Rot >= LowLossLim))
+        {
+            InputLock = true;
+            GameWon = false;
+        }
+
     }
 
     public void StartTimer()

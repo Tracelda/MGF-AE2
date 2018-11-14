@@ -576,8 +576,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rotation: {x: 0, y: 0, z: 0}
-  LeftLock: 90
-  RightLock: 300
+  LowLim: 200
+  HighLim: 280
+  LowLossLim: 60
+  HighLossLim: 100
   Wateringcan: {fileID: 0}
   Rigid: {fileID: 0}
   InputLock: 0
