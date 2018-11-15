@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum Navigation {mainmenu, loading, pop, water, avoid, count, jump, slide, wack, simonsays, gameover };
+public enum Navigation {mainmenu, loading, pop, water, avoid, count, jump, slide, wack, simonsays, roll, gameover };
 
 public class GameManager : MonoBehaviour {
 
@@ -70,10 +70,10 @@ public class GameManager : MonoBehaviour {
                 SceneManager.LoadScene(9);
                 break;
 
-            //case Navigation.tip:
-            //    Debug.Log("Switch to tip");
-            //    SceneManager.LoadScene(7);
-            //    break;
+            case Navigation.roll:
+                Debug.Log("Switch to tip");
+                SceneManager.LoadScene(10);
+                break;
 
             //case Navigation.spin:
             //    Debug.Log("Switch to spin");
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour {
             //    break;
 
             case Navigation.gameover:
-                SceneManager.LoadScene(10);
+                SceneManager.LoadScene(11);
                 break;
         }
     }
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour {
     {
         SceneNum = (Navigation)2; // loads first game pop
         StaticScrpt.currentGame = 2; // pop is scene number 2
-        StaticScrpt.lives = 3;
+        StaticScrpt.lives = 4;
         ChangeScene();
 
     }
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour {
 
     public void LoadGameOver()
     {
-        SceneNum = (Navigation)15;
+        SceneNum = (Navigation)11;
     }
 
     public void SetSceneNo(int SceneNumber)
