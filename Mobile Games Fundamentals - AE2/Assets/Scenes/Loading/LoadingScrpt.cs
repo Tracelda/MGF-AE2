@@ -16,6 +16,7 @@ public class LoadingScrpt : MonoBehaviour {
     public GameObject Heart1;
     public GameObject Heart2;
     public GameObject Heart3;
+    public GameObject Heart4;
 
     void Start ()
     {
@@ -23,6 +24,7 @@ public class LoadingScrpt : MonoBehaviour {
         Heart1 = GameObject.Find("Heart1");
         Heart2 = GameObject.Find("Heart2");
         Heart3 = GameObject.Find("Heart3");
+        Heart4 = GameObject.Find("Heart4");
         CountDownSlider = CountDown.GetComponent<Slider>();
         StartLoadingTimer = true;
         TimeUp = false;
@@ -63,18 +65,28 @@ public class LoadingScrpt : MonoBehaviour {
             Heart1.SetActive(true);
             Heart2.SetActive(false);
             Heart3.SetActive(false);
+            Heart4.SetActive(false);
         }
         else if (CurrentLives == 2)
         {
             Heart1.SetActive(true);
             Heart2.SetActive(true);
             Heart3.SetActive(false);
+            Heart4.SetActive(false);
         }
         else if (CurrentLives == 3)
         {
             Heart1.SetActive(true);
             Heart2.SetActive(true);
             Heart3.SetActive(true);
+            Heart4.SetActive(false);
+        }
+        else if (CurrentLives == 4)
+        {
+            Heart1.SetActive(true);
+            Heart2.SetActive(true);
+            Heart3.SetActive(true);
+            Heart4.SetActive(true);
         }
     }
 }

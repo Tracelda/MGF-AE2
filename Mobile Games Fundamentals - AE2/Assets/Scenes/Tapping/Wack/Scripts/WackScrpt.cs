@@ -108,7 +108,7 @@ public class WackScrpt : MonoBehaviour {
             MoleB.GetComponent<SpriteRenderer>().color = Color.green;
             Debug.Log("Mole B Active");
         }
-        if ((CountDownScrpt.TimerValue >= 3) && (MoleAHit == false))
+        if ((CountDownScrpt.TimerValue >= 3) && (MoleCHit == false))
         {
             MoleCActive = true;
             MoleC.GetComponent<SpriteRenderer>().color = Color.green;

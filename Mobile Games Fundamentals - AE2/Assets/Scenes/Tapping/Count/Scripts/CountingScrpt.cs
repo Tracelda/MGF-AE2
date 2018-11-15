@@ -25,35 +25,17 @@ public class CountingScrpt : MonoBehaviour {
         CountText = CounterText.GetComponent<Text>();
         CountTarget = 5;
         DisableInput = false;
+        StartTimer();
     }
 
 
     void Update()
     {
-#if UNITY_EDITOR
-
-        StartTimer();
+//#if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
             // Debug.Log("Click");
-            Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-            RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
-
-            if (hit && hit.collider.CompareTag("Counter") == true && Count < 10)
-            {
-                // Debug.Log("Counter Hit");
-                // Debug.Log("Less Than 10");
-                Count++;
-                CountStrng = Count.ToString();
-                CountText.text = "0" + CountStrng;
-            }
-            else if (hit && hit.collider.CompareTag("Counter") == true && Count >= 10)
-            {
-                // Debug.Log("Counter Hit");
-                // Debug.Log("More Than 10");
-                Count++;
-                CountStrng = Count.ToString();
-            }
+            Hit();
         }
 
         if (Count == CountTarget)
@@ -68,44 +50,27 @@ public class CountingScrpt : MonoBehaviour {
         }
         EndCheck();
 
-#elif UNITY_ANDROID
+//#elif UNITY_ANDROID
 
-            StartTimer();
-            if (Input.touchCount == 1)
-             {
-                Debug.Log("Click");
-                Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-                RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
+//            StartTimer();
+//            if (Input.touchCount == 1)
+//             {
+//                Debug.Log("Click");
+//                Hit();
+//            }
 
-                if (hit && hit.collider.CompareTag("Counter") == true && Count < 10)
-                {
-                   // Debug.Log("Counter Hit");
-                    // Debug.Log("Less Than 10");
-                    Count++;
-                    CountStrng = Count.ToString();
-                    CountText.text = "0" + CountStrng;
-                }
-                else if (hit && hit.collider.CompareTag("Counter") == true && Count >= 10)
-                {
-                    // Debug.Log("Counter Hit");
-                    // Debug.Log("More Than 10");
-                    Count++;
-                    CountStrng = Count.ToString();
-                }
-            }
-
-            if (Count == CountTarget)
-            {
-                GameWon = true;
-                Debug.Log("Game Won");
-            }
-            else if (Count > CountTarget)
-            {
-                GameWon = false;
-                Debug.Log("Game Lost");
-            }
-        EndCheck();
-#endif
+//            if (Count == CountTarget)
+//            {
+//                GameWon = true;
+//                Debug.Log("Game Won");
+//            }
+//            else if (Count > CountTarget)
+//            {
+//                GameWon = false;
+//                Debug.Log("Game Lost");
+//            }
+//        EndCheck();
+//#endif
     }
 
 
@@ -135,6 +100,28 @@ public class CountingScrpt : MonoBehaviour {
         {
             Debug.Log("Game Won");
             GameManager.LoadNextGame();
+        }
+    }
+
+    public void Hit()
+    {
+        Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+        RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
+
+        if (hit && hit.collider.CompareTag("Counter") == true && Count < 10)
+        {
+            // Debug.Log("Counter Hit");
+            // Debug.Log("Less Than 10");
+            Count++;
+            CountStrng = Count.ToString();
+            CountText.text = "0" + CountStrng;
+        }
+        else if (hit && hit.collider.CompareTag("Counter") == true && Count >= 10)
+        {
+            // Debug.Log("Counter Hit");
+            // Debug.Log("More Than 10");
+            Count++;
+            CountStrng = Count.ToString();
         }
     }
 }
