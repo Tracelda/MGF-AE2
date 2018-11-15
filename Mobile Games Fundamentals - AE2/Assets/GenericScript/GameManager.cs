@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum Navigation {mainmenu, loading, pop, water, avoid, count, jump, slide, wack, dodge, gameover };
+public enum Navigation {mainmenu, loading, pop, water, avoid, count, jump, slide, wack, simonsays, gameover };
 
 public class GameManager : MonoBehaviour {
 
@@ -37,37 +37,37 @@ public class GameManager : MonoBehaviour {
 
             case Navigation.water:
                 Debug.Log("Switch to water");
-                SceneManager.LoadScene(8);
+                SceneManager.LoadScene(3);
                 break;
 
             case Navigation.avoid:
                 Debug.Log("Switch to avoid");
-                SceneManager.LoadScene(9);
+                SceneManager.LoadScene(4);
                 break;
 
             case Navigation.count:
                 Debug.Log("Switch to count");
-                SceneManager.LoadScene(3);
+                SceneManager.LoadScene(5);
                 break;
 
             case Navigation.jump:
                 Debug.Log("Switch to jump");
-                SceneManager.LoadScene(13);
+                SceneManager.LoadScene(6);
                 break;
 
             case Navigation.slide:
                 Debug.Log("Switch to slide");
-                SceneManager.LoadScene(6);
+                SceneManager.LoadScene(7);
                 break;
 
             case Navigation.wack:
                 Debug.Log("Switch to wack");
-                SceneManager.LoadScene(5);
+                SceneManager.LoadScene(8);
                 break;
 
-            case Navigation.dodge:
-                Debug.Log("Switch to dodge");
-                SceneManager.LoadScene(12);
+            case Navigation.simonsays:
+                Debug.Log("Switch to Simon Says");
+                SceneManager.LoadScene(9);
                 break;
 
             //case Navigation.tip:
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour {
             //    break;
 
             case Navigation.gameover:
-                SceneManager.LoadScene(15);
+                SceneManager.LoadScene(10);
                 break;
         }
     }
@@ -113,9 +113,9 @@ public class GameManager : MonoBehaviour {
     public void LoadNextGame()
     {
         SceneNum = (Navigation)1; // loads loading scene
-        Debug.Log("Before ++:" + StaticScrpt.currentGame);
+        // Debug.Log("Before ++:" + StaticScrpt.currentGame);
         StaticScrpt.currentGame++;
-        Debug.Log("After ++:" + StaticScrpt.currentGame);
+        // Debug.Log("After ++:" + StaticScrpt.currentGame);
         ChangeScene();
     }
 
@@ -127,5 +127,11 @@ public class GameManager : MonoBehaviour {
     public void SetSceneNo(int SceneNumber)
     {
         SceneNum = (Navigation)SceneNumber;
+    }
+
+    public void Restart()
+    {
+        SceneNum = (Navigation)0; // loads main menu
+        ChangeScene();
     }
 }

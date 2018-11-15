@@ -43,7 +43,7 @@ public class BalloonScrpt : MonoBehaviour
 
                 if (hit && hit.collider.CompareTag("Balloon") == true) // Checking tag of hit sprite
                 {
-                    Debug.Log("Balloon Hit");
+                    // Debug.Log("Balloon Hit");
                     Destroy(hit.transform.gameObject); // Destroy gameobject that is hit by raycast
                     BalloonsPopped++;
                 }
@@ -53,13 +53,13 @@ public class BalloonScrpt : MonoBehaviour
             {
                 GameWon = true;
                 DisableInput = true;
-                Debug.Log("Game Won");
+                // Debug.Log("Game Won");
             }
 
         }
         else
         {
-            Debug.Log("Input Disabled");
+            // Debug.Log("Input Disabled");
         }
         EndCheck();
 
@@ -71,14 +71,14 @@ public class BalloonScrpt : MonoBehaviour
 
             if (Input.touchCount == 1)
             {
-                Debug.Log("Click");
+                // Debug.Log("Click");
 
                 Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
                 RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
 
                 if (hit && hit.collider.CompareTag("Balloon") == true) // Checking tag of hit sprite
                 {
-                Debug.Log("Balloon Hit");
+                // Debug.Log("Balloon Hit");
                 Destroy(hit.transform.gameObject); // Destroy gameobject that is hit by raycast
                 BalloonsPopped++;
                 }
@@ -88,13 +88,13 @@ public class BalloonScrpt : MonoBehaviour
             {
                 GameWon = true;
                 DisableInput = false;
-                Debug.Log("Game Won");
+                // Debug.Log("Game Won");
             }
            
          }
         else
         {
-            Debug.Log("Input Disabled");
+            // Debug.Log("Input Disabled");
         }
          EndCheck();
 

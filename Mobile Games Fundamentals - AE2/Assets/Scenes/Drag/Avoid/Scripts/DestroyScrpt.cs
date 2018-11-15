@@ -8,7 +8,7 @@ public class DestroyScrpt : MonoBehaviour {
         if(collision.gameObject.tag == "Destroy")
         {
             Destroy(collision.gameObject);
-            Debug.Log("Destroyed");
+            // Debug.Log("Destroyed");
         }
     }
 }

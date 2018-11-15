@@ -37,7 +37,7 @@ public class WateringScrpt : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Input Locked");
+            // Debug.Log("Input Locked");
         }
         EndCheck();
     }
@@ -50,7 +50,7 @@ public class WateringScrpt : MonoBehaviour {
 
     public void CheckRotation()
     {
-        Debug.Log(Rot);
+        // Debug.Log(Rot);
         Rot = gameObject.transform.rotation.eulerAngles.z;
         Pouring();
         

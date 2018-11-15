@@ -31,7 +31,7 @@ public class CountDownScrpt : MonoBehaviour {
             {
                 StartTimer = false;
                 TimeUp = true;
-                Debug.Log("TimeUp");
+                // Debug.Log("TimeUp");
             }
         }
 	}

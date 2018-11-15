@@ -35,22 +35,22 @@ public class CountingScrpt : MonoBehaviour {
         StartTimer();
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Click");
+            // Debug.Log("Click");
             Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
             RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
 
             if (hit && hit.collider.CompareTag("Counter") == true && Count < 10)
             {
-                Debug.Log("Counter Hit");
-                Debug.Log("Less Than 10");
+                // Debug.Log("Counter Hit");
+                // Debug.Log("Less Than 10");
                 Count++;
                 CountStrng = Count.ToString();
                 CountText.text = "0" + CountStrng;
             }
             else if (hit && hit.collider.CompareTag("Counter") == true && Count >= 10)
             {
-                Debug.Log("Counter Hit");
-                Debug.Log("More Than 10");
+                // Debug.Log("Counter Hit");
+                // Debug.Log("More Than 10");
                 Count++;
                 CountStrng = Count.ToString();
             }
@@ -59,12 +59,12 @@ public class CountingScrpt : MonoBehaviour {
         if (Count == CountTarget)
         {
             GameWon = true;
-            Debug.Log("Game Won");
+            // Debug.Log("Game Won");
         }
         else if (Count > CountTarget)
         {
             GameWon = false;
-            Debug.Log("Game Lost");
+            // Debug.Log("Game Lost");
         }
         EndCheck();
 
@@ -79,16 +79,16 @@ public class CountingScrpt : MonoBehaviour {
 
                 if (hit && hit.collider.CompareTag("Counter") == true && Count < 10)
                 {
-                    Debug.Log("Counter Hit");
-                    Debug.Log("Less Than 10");
+                   // Debug.Log("Counter Hit");
+                    // Debug.Log("Less Than 10");
                     Count++;
                     CountStrng = Count.ToString();
                     CountText.text = "0" + CountStrng;
                 }
                 else if (hit && hit.collider.CompareTag("Counter") == true && Count >= 10)
                 {
-                    Debug.Log("Counter Hit");
-                    Debug.Log("More Than 10");
+                    // Debug.Log("Counter Hit");
+                    // Debug.Log("More Than 10");
                     Count++;
                     CountStrng = Count.ToString();
                 }

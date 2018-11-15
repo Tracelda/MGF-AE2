@@ -11,10 +11,18 @@ public class LoadingScrpt : MonoBehaviour {
     public float TimerValue;
     public float TimerTarget;
     public GameManager GameManager;
+    public int CurrentLives;
+    public StaticScrpt StaticScrpt;
+    public GameObject Heart1;
+    public GameObject Heart2;
+    public GameObject Heart3;
 
     void Start ()
     {
         CountDown = GameObject.Find("Slider");
+        Heart1 = GameObject.Find("Heart1");
+        Heart2 = GameObject.Find("Heart2");
+        Heart3 = GameObject.Find("Heart3");
         CountDownSlider = CountDown.GetComponent<Slider>();
         StartLoadingTimer = true;
         TimeUp = false;
@@ -23,6 +31,7 @@ public class LoadingScrpt : MonoBehaviour {
 	
 	void Update ()
     {
+        UpdateLives(); 
         if (StartLoadingTimer == true && TimerValue < TimerTarget)
         {
             TimerValue += Time.deltaTime;
@@ -42,5 +51,30 @@ public class LoadingScrpt : MonoBehaviour {
     {
         GameManager.SetSceneNo(StaticScrpt.currentGame);
         GameManager.ChangeScene();
+    }
+
+    public void UpdateLives()
+    {
+        CurrentLives = StaticScrpt.lives;
+        Debug.Log("Lives: " + CurrentLives);
+
+        if (CurrentLives == 1)
+        {
+            Heart1.SetActive(true);
+            Heart2.SetActive(false);
+            Heart3.SetActive(false);
+        }
+        else if (CurrentLives == 2)
+        {
+            Heart1.SetActive(true);
+            Heart2.SetActive(true);
+            Heart3.SetActive(false);
+        }
+        else if (CurrentLives == 3)
+        {
+            Heart1.SetActive(true);
+            Heart2.SetActive(true);
+            Heart3.SetActive(true);
+        }
     }
 }

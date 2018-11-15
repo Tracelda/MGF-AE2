@@ -44,7 +44,7 @@ public class SwipeInputScrpt : MonoBehaviour {
                     {
                         if ((LastTouchPos.x < FirstTouchPos.x))
                         {
-                            Debug.Log("Left");
+                            // Debug.Log("Player Swiped Left");
                             Swipe = true;
                             LeftSwipe = true;
                             RightSwipe = false;
@@ -53,7 +53,7 @@ public class SwipeInputScrpt : MonoBehaviour {
                         }
                         else
                         {
-                            Debug.Log("Right");
+                            // Debug.Log("Player Swiped Right");
                             Swipe = true;
                             LeftSwipe = false;
                             RightSwipe = true;
@@ -61,7 +61,7 @@ public class SwipeInputScrpt : MonoBehaviour {
                             DownSwipe = false;
                         }
                     }
-                    else { Debug.Log("Horizontal Lock Active"); }
+                    else { /*Debug.Log("Horizontal Lock Active");*/ }
                 }
                 else
                 {
@@ -69,7 +69,7 @@ public class SwipeInputScrpt : MonoBehaviour {
                     {
                         if (LastTouchPos.y > FirstTouchPos.y)
                         {
-                            Debug.Log("Up");
+                            // Debug.Log("Player Swiped Up");
                             Swipe = true;
                             LeftSwipe = false;
                             RightSwipe = false;
@@ -78,7 +78,7 @@ public class SwipeInputScrpt : MonoBehaviour {
                         }
                         else
                         {
-                            Debug.Log("Down");
+                            // Debug.Log("Player Swiped Down");
                             Swipe = true;
                             LeftSwipe = false;
                             RightSwipe = false;
@@ -88,7 +88,7 @@ public class SwipeInputScrpt : MonoBehaviour {
                     }
                     else
                     {
-                        Debug.Log("Vertical Lock Active");
+                        // Debug.Log("Vertical Lock Active");
                         Swipe = false;
 
                     }
@@ -109,6 +109,6 @@ public class SwipeInputScrpt : MonoBehaviour {
         DownSwipe = false;
         LeftSwipe = false;
         RightSwipe = false;
-        Debug.Log("Reset Swipe");
+        // Debug.Log("Reset Swipe");
     }
 }

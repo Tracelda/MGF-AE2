@@ -12,6 +12,7 @@ TagManager:
   - Movable
   - Destroy
   - Floor
+  - Coin
   layers:
   - Default
   - TransparentFX

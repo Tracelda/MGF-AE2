@@ -58,7 +58,7 @@ public class AvoidScrpt : MonoBehaviour {
 
     public void RayCast() // detects if moveable object has been hit
     {
-        Debug.Log("Click"); 
+        // Debug.Log("Click"); 
         Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
         RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
 
@@ -75,14 +75,14 @@ public class AvoidScrpt : MonoBehaviour {
         mouselocation.z = 10f; // used to set the distance that the object is placed infront of the camera when moving
         Rigid.transform.position = Camera.main.ScreenToWorldPoint(mouselocation);
         Rigid.bodyType = RigidbodyType2D.Dynamic;
-        Debug.Log("Pick Up");
+        // Debug.Log("Pick Up");
     }
 
     public void PutDown()
     {
         Moving = false;
         Pickedup = false;
-        Debug.Log("Put Down");
+        // Debug.Log("Put Down");
     }
 
     public void StartTimer()
@@ -116,7 +116,7 @@ public class AvoidScrpt : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameLost = true;
-        Debug.Log("Collission");
+        // Debug.Log("Collission");
     }
 
     private void InstantiateFallingObject()

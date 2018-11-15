@@ -27,7 +27,7 @@ public class ObsticalScrpt : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Player")
         {
-            Debug.Log("Collision");
+            // Debug.Log("Collision");
             NewJumpScrpt.GameWon = false;
         }
     }

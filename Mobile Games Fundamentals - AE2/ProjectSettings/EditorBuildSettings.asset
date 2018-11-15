@@ -21,19 +21,19 @@ EditorBuildSettings:
     path: Assets/Scenes/Drag/Avoid/Avoid.unity
     guid: 8ae3f77be5826b84da613861d1051ff7
   - enabled: 1
+    path: Assets/Scenes/Tapping/Count/Count.unity
+    guid: 8c2cb624717c0b140a7bf1dd80bf4d55
+  - enabled: 1
     path: Assets/Scenes/Swiping/Jump/Jump.unity
     guid: 0f6378f5fbc31c04fa6d9fc01f5e1ed4
   - enabled: 1
     path: Assets/Scenes/Accelerometer/Slide/Slide.unity
     guid: fe782bc3e82ffcb4bac05a26717a27aa
   - enabled: 1
-    path: Assets/Scenes/Tapping/Count/Count.unity
-    guid: 8c2cb624717c0b140a7bf1dd80bf4d55
-  - enabled: 1
     path: Assets/Scenes/Tapping/Wack/Wack.unity
     guid: 5586f50a16b269f4fb5645c650ffa1ee
   - enabled: 1
-    path: Assets/Scenes/Swiping/Dodge.unity
+    path: Assets/Scenes/Swiping/SimonSays/SimonSays.unity
     guid: b367708937f678844bb2a9d239b9ac60
   - enabled: 1
     path: Assets/Scenes/GameOver/GameOver.unity

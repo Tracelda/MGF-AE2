@@ -17,6 +17,12 @@ public class WackScrpt : MonoBehaviour {
     public bool MoleAActive;
     public bool MoleBActive;
     public bool MoleCActive;
+    public bool MoleAHit;
+    public bool MoleBHit;
+    public bool MoleCHit;
+    public GameObject MoleA;
+    public GameObject MoleB;
+    public GameObject MoleC;
 
 
 
@@ -24,11 +30,17 @@ public class WackScrpt : MonoBehaviour {
 
     void Start ()
     {
+        MoleA = GameObject.Find("MoleA");
+        MoleB = GameObject.Find("MoleB");
+        MoleC = GameObject.Find("MoleC");
         DisableInput = false;
         GameWon = false;
         MoleAActive = false;
         MoleBActive = false;
         MoleCActive = false;
+        MoleAHit = false;
+        MoleBHit = false;
+        MoleCHit = false;
     }
 	
 
@@ -90,20 +102,23 @@ public class WackScrpt : MonoBehaviour {
 
     public void ActivateMole()
     {
-        if (CountDownScrpt.TimerValue >= 1)
+        if ((MoleAHit == false) && (CountDownScrpt.TimerValue == 1))
         {
             MoleAActive = true;
-            Debug.Log("Mole A Active");
+            MoleA.GetComponent<SpriteRenderer>().color = Color.green;
+            // Debug.Log("Mole A Active");
         }
-        if (CountDownScrpt.TimerValue >= 2)
+        if ((CountDownScrpt.TimerValue >= 2) && (MoleBHit = false))
         {
             MoleBActive = true;
-            Debug.Log("Mole B Active");
+            MoleB.GetComponent<SpriteRenderer>().color = Color.green;
+            // Debug.Log("Mole B Active");
         }
-        if(CountDownScrpt.TimerValue >= 3)
+        if ((CountDownScrpt.TimerValue >= 3) && (MoleAHit = false))
         {
             MoleCActive = true;
-            Debug.Log("Mole C Active");
+            MoleC.GetComponent<SpriteRenderer>().color = Color.green;
+            // Debug.Log("Mole C Active");
         }
     }
 
@@ -111,12 +126,14 @@ public class WackScrpt : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Click");
+            // Debug.Log("Click");
             Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
             RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
             if (hit && hit.collider.CompareTag("MoleA") == true)
             {
-                Debug.Log("Mole Hit");
+                // Debug.Log("Mole Hit");
+                MoleAActive = false;
+                MoleAHit = true;
                 MolesWacked++;
             }
         }
@@ -127,12 +144,14 @@ public class WackScrpt : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Click");
+            // Debug.Log("Click");
             Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
             RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
             if (hit && hit.collider.CompareTag("MoleB") == true)
             {
-                Debug.Log("Mole Hit");
+                // Debug.Log("Mole Hit");
+                MoleBActive = false;
+                MoleBHit = true;
                 MolesWacked++;
             }
         }
@@ -143,12 +162,14 @@ public class WackScrpt : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Click");
+            // Debug.Log("Click");
             Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
             RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
             if (hit && hit.collider.CompareTag("MoleC") == true)
             {
-                Debug.Log("Mole Hit");
+                // Debug.Log("Mole Hit");
+                MoleCActive = false;
+                MoleCHit = true;
                 MolesWacked++;
             }
         }
@@ -161,7 +182,7 @@ public class WackScrpt : MonoBehaviour {
         {
             GameWon = true;
             DisableInput = true;
-            Debug.Log("Game Won");
+            // Debug.Log("Game Won");
         }
     }
 }

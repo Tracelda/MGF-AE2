@@ -26,12 +26,12 @@ public class NewJumpScrpt : MonoBehaviour {
     {
         SwipeInputScrpt.DetectSwipe();
         JumpResult = SwipeInputScrpt.DetectSwipe();
-        Debug.Log(JumpResult);
+        // Debug.Log(JumpResult);
         if (JumpResult == true)
         {
             Jump();
         }
-        Debug.DrawLine(transform.position, transform.position + new Vector3(0, RayLength, 0), Color.red, 10f);
+        // Debug.DrawLine(transform.position, transform.position + new Vector3(0, RayLength, 0), Color.red, 10f);
         EndCheck();
 	}
 
@@ -44,7 +44,7 @@ public class NewJumpScrpt : MonoBehaviour {
     {
         if (CountDownScrpt.TimeUp == true && GameWon == false)
         {
-            Debug.Log("GameLost");
+            // Debug.Log("GameLost");
             StaticScrpt.Lives--;
             if (StaticScrpt.Lives != 0)
             {
@@ -58,7 +58,7 @@ public class NewJumpScrpt : MonoBehaviour {
         }
         else if (CountDownScrpt.TimeUp == true && GameWon == true)
         {
-            Debug.Log("Game Won");
+            // Debug.Log("Game Won");
             GameManager.LoadNextGame();
         }
     }
