@@ -11,7 +11,7 @@ public class GameOverScrpt : MonoBehaviour {
     {
         Text = GameObject.Find("Text");
         TextVal = Text.GetComponent<Text>();
-        if (StaticScrpt.lives >= 0)
+        if (StaticScrpt.lives > 0)
         {
             TextVal.text = "You have won!!!";
         }

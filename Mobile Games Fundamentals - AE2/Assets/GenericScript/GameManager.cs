@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum Navigation {mainmenu, loading, pop, water, avoid, count, jump, slide, wack, simonsays, roll, gameover };
+public enum Navigation {mainmenu, loading, pop, water, avoid, count, jump, slide, wack, simonsays, roll, spin, gameover };
 
 public class GameManager : MonoBehaviour {
 
@@ -75,10 +75,10 @@ public class GameManager : MonoBehaviour {
                 SceneManager.LoadScene(10);
                 break;
 
-            //case Navigation.spin:
-            //    Debug.Log("Switch to spin");
-            //    SceneManager.LoadScene(10);
-            //    break;
+            case Navigation.spin:
+                Debug.Log("Switch to spin");
+                SceneManager.LoadScene(11);
+                break;
 
             //case Navigation.eat:
             //    Debug.Log("Switch to eat");
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour {
             //    break;
 
             case Navigation.gameover:
-                SceneManager.LoadScene(11);
+                SceneManager.LoadScene(12);
                 break;
         }
     }
@@ -121,7 +121,8 @@ public class GameManager : MonoBehaviour {
 
     public void LoadGameOver()
     {
-        SceneNum = (Navigation)11;
+        SceneNum = (Navigation)12;
+        ChangeScene();
     }
 
     public void SetSceneNo(int SceneNumber)

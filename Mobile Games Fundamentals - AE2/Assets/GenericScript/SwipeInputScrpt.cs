@@ -38,61 +38,65 @@ public class SwipeInputScrpt : MonoBehaviour {
             {
                 LastTouchPos = touch.position;
 
-                if (Mathf.Abs(LastTouchPos.x - FirstTouchPos.x) > Mathf.Abs(LastTouchPos.y - FirstTouchPos.y)) // Check if horizontal or vertical
+                if (Mathf.Abs(LastTouchPos.x - FirstTouchPos.x) > Distance || Mathf.Abs(LastTouchPos.y - FirstTouchPos.y) > Distance)
                 {
-                    if (HorizontalLock == false)
+                    if (Mathf.Abs(LastTouchPos.x - FirstTouchPos.x) > Mathf.Abs(LastTouchPos.y - FirstTouchPos.y)) // Check if horizontal or vertical
                     {
-                        if ((LastTouchPos.x < FirstTouchPos.x))
+                        if (HorizontalLock == false)
                         {
-                            // Debug.Log("Player Swiped Left");
-                            Swipe = true;
-                            LeftSwipe = true;
-                            RightSwipe = false;
-                            UpSwipe = false;
-                            DownSwipe = false;
+                            if ((LastTouchPos.x < FirstTouchPos.x))
+                            {
+                                // Debug.Log("Player Swiped Left");
+                                Swipe = true;
+                                LeftSwipe = true;
+                                RightSwipe = false;
+                                UpSwipe = false;
+                                DownSwipe = false;
+                            }
+                            else
+                            {
+                                // Debug.Log("Player Swiped Right");
+                                Swipe = true;
+                                LeftSwipe = false;
+                                RightSwipe = true;
+                                UpSwipe = false;
+                                DownSwipe = false;
+                            }
                         }
-                        else
-                        {
-                            // Debug.Log("Player Swiped Right");
-                            Swipe = true;
-                            LeftSwipe = false;
-                            RightSwipe = true;
-                            UpSwipe = false;
-                            DownSwipe = false;
-                        }
-                    }
-                    else { /*Debug.Log("Horizontal Lock Active");*/ }
-                }
-                else
-                {
-                    if (VerticalLock == false)
-                    {
-                        if (LastTouchPos.y > FirstTouchPos.y)
-                        {
-                            // Debug.Log("Player Swiped Up");
-                            Swipe = true;
-                            LeftSwipe = false;
-                            RightSwipe = false;
-                            UpSwipe = true;
-                            DownSwipe = false;
-                        }
-                        else
-                        {
-                            // Debug.Log("Player Swiped Down");
-                            Swipe = true;
-                            LeftSwipe = false;
-                            RightSwipe = false;
-                            UpSwipe = false;
-                            DownSwipe = true;
-                        }
+                        else { /*Debug.Log("Horizontal Lock Active");*/ }
                     }
                     else
                     {
-                        // Debug.Log("Vertical Lock Active");
-                        Swipe = false;
-
+                        if (VerticalLock == false)
+                        {
+                            if (LastTouchPos.y > FirstTouchPos.y)
+                            {
+                                // Debug.Log("Player Swiped Up");
+                                Swipe = true;
+                                LeftSwipe = false;
+                                RightSwipe = false;
+                                UpSwipe = true;
+                                DownSwipe = false;
+                            }
+                            else
+                            {
+                                // Debug.Log("Player Swiped Down");
+                                Swipe = true;
+                                LeftSwipe = false;
+                                RightSwipe = false;
+                                UpSwipe = false;
+                                DownSwipe = true;
+                            }
+                        }
+                        else
+                        {
+                            // Debug.Log("Vertical Lock Active");
+                            Swipe = false;
+                        }
                     }
                 }
+                else { Debug.Log("Tap"); }
+                   
             }
         }
         else

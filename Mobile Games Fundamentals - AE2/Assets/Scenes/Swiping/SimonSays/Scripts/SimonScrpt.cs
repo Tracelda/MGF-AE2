@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public enum Direction { Left, Right, Up, Down};
+public enum Direction { Left, Right, Up, Down, DoNothing};
 
 public class SimonScrpt : MonoBehaviour {
     public bool GameWon;
@@ -52,16 +52,25 @@ public class SimonScrpt : MonoBehaviour {
 
     public void PickDirection()
     {
-        if (PickNewNumber == true) // Pick a random direction out of the 4
+        if (SwipeNumber < SwipeTarget)
         {
-            direction = (Direction)0;
-            // Debug.Log("Before: " + direction);
-            Rand = Random.Range(0, 4);
-            direction = direction + Rand;
-            // Debug.Log("After: " + direction);
+            Debug.Log("Pick Number");
+            if (PickNewNumber == true) // Pick a random direction out of the 4
+            {
+                direction = (Direction)0;
+                // Debug.Log("Before: " + direction);
+                Rand = Random.Range(0, 4);
+                direction = direction + Rand;
+                // Debug.Log("After: " + direction);
 
-            DisplayDirection();
-            PickNewNumber = false;
+                DisplayDirection();
+                PickNewNumber = false;
+            }
+        }
+        else if (SwipeNumber >= SwipeTarget)
+        {
+            direction = (Direction)4;
+            Debug.Log("Do Nothing");
         }
     }
 
@@ -93,6 +102,11 @@ public class SimonScrpt : MonoBehaviour {
                 DirectionText.text = "Swipe Down";
                 Down = true;
                 break;
+
+            case Direction.DoNothing:
+                DirectionText.text = "Do Nothing";
+                Debug.Log("Do Nothing");
+                break;
         }
     }
 
@@ -102,7 +116,7 @@ public class SimonScrpt : MonoBehaviour {
         if ((Left == true) && (SwipeInputScrpt.LeftSwipe == true))
         {
             SwipeNumber++;
-            if (SwipeNumber == SwipeTarget)
+            if (SwipeNumber >= SwipeTarget)
             {
                 GameWon = true;
             }
@@ -114,7 +128,7 @@ public class SimonScrpt : MonoBehaviour {
         else if ((Right == true) && (SwipeInputScrpt.RightSwipe == true))
         {
             SwipeNumber++;
-            if (SwipeNumber == SwipeTarget)
+            if (SwipeNumber >= SwipeTarget)
             {
                 GameWon = true;
             }
@@ -126,7 +140,7 @@ public class SimonScrpt : MonoBehaviour {
         else if ((Up == true) && (SwipeInputScrpt.UpSwipe == true))
         {
             SwipeNumber++;
-            if (SwipeNumber == SwipeTarget)
+            if (SwipeNumber >= SwipeTarget)
             {
                 GameWon = true;
             }
@@ -138,7 +152,7 @@ public class SimonScrpt : MonoBehaviour {
         else if ((Down == true) && (SwipeInputScrpt.DownSwipe == true))
         {
             SwipeNumber++;
-            if (SwipeNumber == SwipeTarget)
+            if (SwipeNumber >= SwipeTarget)
             {
                 GameWon = true;
             }
@@ -164,16 +178,17 @@ public class SimonScrpt : MonoBehaviour {
         if (CountDownScrpt.TimeUp == true && GameWon == false)
         {
             Debug.Log("GameLost");
-            StaticScrpt.Lives--;
-            if (StaticScrpt.Lives != 0)
+            StaticScrpt.lives--;
+            if (StaticScrpt.lives > 0)
             {
                 GameManager.LoadNextGame();
             }
             else
             {
                 GameManager.LoadGameOver();
+                Debug.Log("Load Game Over");
             }
-            SceneManager.LoadScene(1);
+
         }
         else if (CountDownScrpt.TimeUp == true && GameWon == true)
         {

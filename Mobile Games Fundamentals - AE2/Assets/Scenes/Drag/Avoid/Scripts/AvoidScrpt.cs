@@ -11,7 +11,7 @@ public class AvoidScrpt : MonoBehaviour {
     public Rigidbody2D Rigid;
     public bool Moving;
     public bool Pickedup;
-    public bool GameLost;
+    public bool GameWon;
     public bool Spawned;
     public CountDownScrpt CountDownScrpt;
     public GameManager GameManager;
@@ -92,21 +92,22 @@ public class AvoidScrpt : MonoBehaviour {
 
     public void EndCheck()
     {
-        if (CountDownScrpt.TimeUp == true && GameLost == true)
+        if (CountDownScrpt.TimeUp == true && GameWon == false)
         {
             Debug.Log("GameLost");
-            StaticScrpt.Lives--;
-            if (StaticScrpt.Lives != 0)
+            StaticScrpt.lives--;
+            if (StaticScrpt.lives > 0)
             {
                 GameManager.LoadNextGame();
             }
             else
             {
                 GameManager.LoadGameOver();
+                Debug.Log("Load Game Over");
             }
-            
+
         }
-        else if (CountDownScrpt.TimeUp == true && GameLost == false)
+        else if (CountDownScrpt.TimeUp == true && GameWon == true)
         {
             Debug.Log("Game Won");
             GameManager.LoadNextGame();
@@ -115,8 +116,11 @@ public class AvoidScrpt : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GameLost = true;
-        // Debug.Log("Collission");
+        if(collision.gameObject.tag == "Destroy")
+        {
+            GameWon = false;
+            // Debug.Log("Collission");
+        }
     }
 
     private void InstantiateFallingObject()

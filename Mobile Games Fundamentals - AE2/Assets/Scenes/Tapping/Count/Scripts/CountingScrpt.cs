@@ -85,16 +85,17 @@ public class CountingScrpt : MonoBehaviour {
         if (CountDownScrpt.TimeUp == true && GameWon == false)
         {
             Debug.Log("GameLost");
-            StaticScrpt.Lives--;
-            if (StaticScrpt.Lives != 0)
+            StaticScrpt.lives--;
+            if (StaticScrpt.lives > 0)
             {
                 GameManager.LoadNextGame();
             }
             else
             {
                 GameManager.LoadGameOver();
+                Debug.Log("Load Game Over");
             }
-            SceneManager.LoadScene(1);
+
         }
         else if (CountDownScrpt.TimeUp == true && GameWon == true)
         {
