@@ -24,10 +24,6 @@ public class WackScrpt : MonoBehaviour {
     public GameObject MoleB;
     public GameObject MoleC;
 
-
-
-
-
     void Start ()
     {
         MoleA = GameObject.Find("MoleA");
@@ -55,13 +51,11 @@ public class WackScrpt : MonoBehaviour {
             {
                 HammerHitA();
             }
-
-            else if (MoleBActive == true)
+            if (MoleBActive == true)
             {
                 HammerHitB();
             }
-
-            else if (MoleCActive == true)
+            if (MoleCActive == true)
             {
                 HammerHitC();
             }
@@ -102,23 +96,23 @@ public class WackScrpt : MonoBehaviour {
 
     public void ActivateMole()
     {
-        if ((MoleAHit == false) && (CountDownScrpt.TimerValue == 1))
+        if ((CountDownScrpt.TimerValue >= 1) && (MoleAHit == false))
         {
             MoleAActive = true;
             MoleA.GetComponent<SpriteRenderer>().color = Color.green;
-            // Debug.Log("Mole A Active");
+            Debug.Log("Mole A Active");
         }
-        if ((CountDownScrpt.TimerValue >= 2) && (MoleBHit = false))
+        if ((CountDownScrpt.TimerValue >= 2) && (MoleBHit == false))
         {
             MoleBActive = true;
             MoleB.GetComponent<SpriteRenderer>().color = Color.green;
-            // Debug.Log("Mole B Active");
+            Debug.Log("Mole B Active");
         }
-        if ((CountDownScrpt.TimerValue >= 3) && (MoleAHit = false))
+        if ((CountDownScrpt.TimerValue >= 3) && (MoleAHit == false))
         {
             MoleCActive = true;
             MoleC.GetComponent<SpriteRenderer>().color = Color.green;
-            // Debug.Log("Mole C Active");
+            Debug.Log("Mole C Active");
         }
     }
 

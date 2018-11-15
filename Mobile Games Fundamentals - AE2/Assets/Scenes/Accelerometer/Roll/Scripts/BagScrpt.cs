@@ -22,6 +22,7 @@ public class BagScrpt : MonoBehaviour {
         if (collision.gameObject.tag == "Coin")
         {
             Debug.Log("Collision");
+            Destroy(collision.transform.gameObject);
             GameWon = true;
         }
         else
