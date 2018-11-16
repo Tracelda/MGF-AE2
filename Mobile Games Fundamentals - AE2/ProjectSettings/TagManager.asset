@@ -16,6 +16,7 @@ TagManager:
   - Burger
   - Hole
   - Flag
+  - Ball
   layers:
   - Default
   - TransparentFX
