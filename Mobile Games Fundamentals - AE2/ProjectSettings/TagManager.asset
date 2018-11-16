@@ -15,6 +15,7 @@ TagManager:
   - Coin
   - Burger
   - Hole
+  - Flag
   layers:
   - Default
   - TransparentFX

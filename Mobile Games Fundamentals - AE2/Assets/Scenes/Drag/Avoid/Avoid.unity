@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CountDownScrpt: {fileID: 871673197}
-  Input: {fileID: 0}
+  Input: {fileID: 66292344}
 --- !u!114 &170497061
 MonoBehaviour:
   m_ObjectHideFlags: 0
