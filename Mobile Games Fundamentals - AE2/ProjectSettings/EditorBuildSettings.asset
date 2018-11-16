@@ -48,6 +48,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Drag&Drop/Solve.unity
     guid: 5797d479379b404448c2b96ad747bf8a
   - enabled: 1
+    path: Assets/Scenes/Swiping/SkeeBall/SkeeBall.unity
+    guid: 1fb8af3386571d244a223e86d23c4686
+  - enabled: 1
     path: Assets/Scenes/GameOver/GameOver.unity
     guid: fcb2327e36f2fb7409d0d99133e21eca
   m_configObjects: {}

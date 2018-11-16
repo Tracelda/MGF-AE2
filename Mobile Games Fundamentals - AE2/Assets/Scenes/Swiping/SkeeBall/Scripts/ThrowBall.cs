@@ -18,7 +18,8 @@ public class ThrowBall : MonoBehaviour {
     void Start ()
     {
         GoalsScored = 0;
-        GoalTarget = 4;
+        GoalTarget = 3;
+        StartTimer();
 	}
 	
 

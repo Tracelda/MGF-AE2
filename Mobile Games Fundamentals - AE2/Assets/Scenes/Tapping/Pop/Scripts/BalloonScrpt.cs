@@ -28,24 +28,26 @@ public class BalloonScrpt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-#if UNITY_EDITOR
         if (DisableInput == false)
         {
             StartTimer();
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.touchCount == 1)
             {
-                Debug.Log("Click");
-                // Debug to test if if statement works
-                //Converting Mouse Pos to 2D (vector2) World Pos
-                Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-                RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
-
-                if (hit && hit.collider.CompareTag("Balloon") == true) // Checking tag of hit sprite
+                if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
-                    // Debug.Log("Balloon Hit");
-                    Destroy(hit.transform.gameObject); // Destroy gameobject that is hit by raycast
-                    BalloonsPopped++;
+                    Debug.Log("Click");
+                    // Debug to test if if statement works
+                    //Converting Mouse Pos to 2D (vector2) World Pos
+                    Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+                    RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
+
+                    if (hit && hit.collider.CompareTag("Balloon") == true) // Checking tag of hit sprite
+                    {
+                        // Debug.Log("Balloon Hit");
+                        Destroy(hit.transform.gameObject); // Destroy gameobject that is hit by raycast
+                        BalloonsPopped++;
+                    }
                 }
             }
 
@@ -62,44 +64,6 @@ public class BalloonScrpt : MonoBehaviour
             // Debug.Log("Input Disabled");
         }
         EndCheck();
-
-
-#elif UNITY_ANDROID
-         if (DisableInput == false)
-         {
-            StartTimer();
-
-            if (Input.touchCount == 1)
-            {
-                // Debug.Log("Click");
-
-                Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-                RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
-
-                if (hit && hit.collider.CompareTag("Balloon") == true) // Checking tag of hit sprite
-                {
-                // Debug.Log("Balloon Hit");
-                Destroy(hit.transform.gameObject); // Destroy gameobject that is hit by raycast
-                BalloonsPopped++;
-                }
-            }
-
-            if(BalloonsPopped == PopTarget)
-            {
-                GameWon = true;
-                DisableInput = false;
-                // Debug.Log("Game Won");
-            }
-           
-         }
-        else
-        {
-            // Debug.Log("Input Disabled");
-        }
-         EndCheck();
-
-
-#endif
     }
 
     public void EndCheck()

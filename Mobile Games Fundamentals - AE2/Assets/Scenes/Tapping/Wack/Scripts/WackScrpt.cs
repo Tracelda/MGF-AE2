@@ -120,17 +120,20 @@ public class WackScrpt : MonoBehaviour {
 
     public void HammerHitA()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touchCount == 1)
         {
-            // Debug.Log("Click");
-            Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-            RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
-            if (hit && hit.collider.CompareTag("MoleA") == true)
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                // Debug.Log("Mole Hit");
-                MoleAActive = false;
-                MoleAHit = true;
-                MolesWacked++;
+                // Debug.Log("Click");
+                Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+                RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 100f);
+                if (hit && hit.collider.CompareTag("MoleA") == true)
+                {
+                    // Debug.Log("Mole Hit");
+                    MoleAActive = false;
+                    MoleAHit = true;
+                    MolesWacked++;
+                }
             }
         }
         CheckWin();

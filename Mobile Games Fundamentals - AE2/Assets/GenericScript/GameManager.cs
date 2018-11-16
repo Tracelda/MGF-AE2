@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum Navigation {mainmenu, loading, pop, water, avoid, count, jump, slide, wack, simonsays, roll, spin, eat, solve, gameover };
+public enum Navigation {mainmenu, loading, pop, water, avoid, count, jump, slide, wack, simonsays, roll, spin, eat, solve, skeeball, gameover };
 
 public class GameManager : MonoBehaviour {
 
@@ -85,18 +85,18 @@ public class GameManager : MonoBehaviour {
                 SceneManager.LoadScene(12);
                 break;
 
-            //case Navigation.unroll:
-            //    Debug.Log("Switch to unroll");
-            //    SceneManager.LoadScene(14);
-            //    break;
-
-            case Navigation.solve:
-                Debug.Log("Switch to solve");
+            case Navigation.skeeball:
+                Debug.Log("Switch to unroll");
                 SceneManager.LoadScene(13);
                 break;
 
-            case Navigation.gameover:
+            case Navigation.solve:
+                Debug.Log("Switch to solve");
                 SceneManager.LoadScene(14);
+                break;
+
+            case Navigation.gameover:
+                SceneManager.LoadScene(15);
                 break;
         }
     }

@@ -30,6 +30,7 @@ public class GoalScrpt : MonoBehaviour {
             Debug.Log("Goal Scored");
             ThrowBall.GoalsScored++;
             Hit = true;
+            Move();
         }
     }
 

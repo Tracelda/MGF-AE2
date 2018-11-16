@@ -216,8 +216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fba9b83e52065648b223499804ac90f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThrowBall: {fileID: 0}
+  ThrowBall: {fileID: 811731077}
   Hit: 0
+  ReturnSpot: {fileID: 623058871}
+  Player: {fileID: 811731072}
 --- !u!1 &94887958
 GameObject:
   m_ObjectHideFlags: 0
