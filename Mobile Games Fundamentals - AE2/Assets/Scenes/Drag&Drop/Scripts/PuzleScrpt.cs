@@ -1,38 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class AvoidScrpt : MonoBehaviour {
-
-    private Vector3 mouselocation;
-    public GameObject Movable;
-    public GameObject FallingPrefab;
-    public Rigidbody2D Rigid;
-    public bool Moving;
-    public bool Pickedup;
-    public bool GameWon;
-    public bool Spawned;
+public class PuzleScrpt : MonoBehaviour {
     public CountDownScrpt CountDownScrpt;
     public GameManager GameManager;
-    public float FallPos;
-    public float ScreenLeft;
-    public float ScreenRight;
-    public float FallHight;
-    
+    public bool GameWon;
+    public GameObject Movable;
+    public Rigidbody2D Rigid;
+    public bool Inputlock;
+    public bool Moving;
+    public bool Pickedup;
+    private Vector3 mouselocation;
 
     void Start ()
     {
-        
-        Movable = GameObject.Find("Movable");
+        Movable = GameObject.Find("PuzlePeice");
         Rigid = Movable.GetComponent<Rigidbody2D>();
         Moving = false;
         Pickedup = false;
-        ScreenLeft = -2.30f;
-        ScreenRight = 2.3f;
-        FallHight = 5f;
         StartTimer();
-        InstantiateFallingObject();
     }
 	
 
@@ -56,7 +43,11 @@ public class AvoidScrpt : MonoBehaviour {
             Rigid.velocity = Vector2.zero;
         }
         EndCheck();
+    }
 
+    public void StartTimer()
+    {
+        CountDownScrpt.StartT();
     }
 
     public void RayCast() // detects if moveable object has been hit
@@ -65,7 +56,7 @@ public class AvoidScrpt : MonoBehaviour {
         Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
         RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
 
-        if (hit.collider.CompareTag("Movable") == true) 
+        if (hit.collider.CompareTag("Movable") == true)
         {
             Moving = true;
         }
@@ -85,12 +76,8 @@ public class AvoidScrpt : MonoBehaviour {
     {
         Moving = false;
         Pickedup = false;
+        Rigid.bodyType = RigidbodyType2D.Kinematic;
         // Debug.Log("Put Down");
-    }
-
-    public void StartTimer()
-    {
-        CountDownScrpt.StartT();
     }
 
     public void EndCheck()
@@ -114,25 +101,6 @@ public class AvoidScrpt : MonoBehaviour {
         {
             Debug.Log("Game Won");
             GameManager.LoadNextGame();
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Destroy")
-        {
-            GameWon = false;
-            // Debug.Log("Collission");
-        }
-    }
-
-    private void InstantiateFallingObject()
-    {
-        if (Spawned == false)
-        {
-            FallPos = Random.Range(ScreenLeft, ScreenRight);
-            Instantiate(FallingPrefab, new Vector2(FallPos, FallHight), Quaternion.identity);
-            Spawned = true;
         }
     }
 }

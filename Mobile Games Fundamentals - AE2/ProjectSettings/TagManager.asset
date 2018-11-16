@@ -13,6 +13,8 @@ TagManager:
   - Destroy
   - Floor
   - Coin
+  - Burger
+  - Hole
   layers:
   - Default
   - TransparentFX

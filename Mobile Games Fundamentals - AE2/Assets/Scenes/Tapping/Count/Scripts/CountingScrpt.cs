@@ -31,11 +31,14 @@ public class CountingScrpt : MonoBehaviour {
 
     void Update()
     {
-//#if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(0))
+        //#if UNITY_EDITOR
+        if (Input.touchCount == 1)
         {
-            // Debug.Log("Click");
-            Hit();
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                // Debug.Log("Click");
+                Hit();
+            }
         }
 
         if (Count == CountTarget)
